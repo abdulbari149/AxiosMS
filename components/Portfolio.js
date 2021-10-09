@@ -1,11 +1,11 @@
 import React from "react";
 import { useRouter } from "next/dist/client/router";
 import { portfolioData } from "../constants/portfolioData";
-import { Main } from "../styles/main.style";
+import { Main, ImageContainer } from "../styles/main.style";
 import { PortfolioBox } from "../styles/portfolio.style";
 import Button from "./shared/Button";
 import Section from "./shared/Section";
-import Image from "./shared/Image";
+import NextImage from "next/image"
 const Portfolio = () => {
 
 
@@ -28,7 +28,9 @@ const Portfolio = () => {
             layout={2}
             key={item.id}
           >
-            <Image {...item.image} />
+            <ImageContainer height={item.image.c_height}>
+              <img src={item.image.src} height="100%" width="100%" />
+            </ImageContainer>
             <Button
               width={item.button.size.width}
               height={item.button.size.height}

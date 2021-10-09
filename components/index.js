@@ -8,6 +8,7 @@ export { default as Testimonials } from "./Testimonials";
 export { default as Controller } from "./Controller";
 export { default as Footer } from "./Footer";
 export { default as Loading } from "./Loading";
+export { default as WorkGallery } from "./WorkGallery";
 export { default as Logo } from "./Logo";
 export { default as Root } from "./shared/Root"
 export { default as Section } from "./shared/Section"

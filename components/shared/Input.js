@@ -1,16 +1,15 @@
 import React from "react";
-import { Field, Label, TextArea, InputField } from "../../styles/form.style";
-
-function Input({ label, type, ...props }) {
+import { InputField } from "../../styles/form.style";
+function Input({ label, type, name, ...props }) {
   return (
-    <Field>
-      <Label>{label}</Label>
-      {type === "textarea" ? (
-        <TextArea {...props}></TextArea>
-      ) : (
-        <InputField type={type} {...props} />
-      )}
-    </Field>
+    <InputField
+      variant="filled"
+      name={name}
+      type={type}
+      label={label}
+      size="medium"
+      multiline={type === "textarea"}
+    />
   );
 }
 

@@ -67,7 +67,6 @@ function Form() {
         />
       ))}
       <Button
-        width={12}
         height={6}
         variant="contained"
         color="white"

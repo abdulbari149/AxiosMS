@@ -1,7 +1,14 @@
 import React from "react";
-import { Layout } from "../../styles/main.style";
+import { useRouter } from "next/dist/client/router";
+import { HomeLayout, PortfolioLayout } from "../../styles/layout.style"
 const Root = ({ children }) => {
-  return <Layout>{ children }</Layout>;
+  const router = useRouter()
+
+  let html = null;
+
+  if(router.route == "/portfolio") return <PortfolioLayout>{children}</PortfolioLayout>
+  
+  return <HomeLayout>{children}</HomeLayout>;
 };
 
 export default Root;

@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { AuthProvider } from "../store/context/auth";
+
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;

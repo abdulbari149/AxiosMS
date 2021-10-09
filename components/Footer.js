@@ -1,5 +1,5 @@
 import React from "react";
-import { Main, Container, Text } from "../styles/main.style";
+import { Main, Text, Flex } from "../styles/main.style";
 const Footer = () => {
   return (
     <Main
@@ -7,9 +7,9 @@ const Footer = () => {
       background="black"
       name="footer"
     >
-      <Container>
-        <Text>&copy; copyright 2021 by Axios Media Solution </Text>
-      </Container>
+      <Flex alignItems="center" justifyContent="center">
+        <Text color="white">&copy; copyright 2021 by Axios Media Solution </Text>
+      </Flex>
     </Main>
   );
 };

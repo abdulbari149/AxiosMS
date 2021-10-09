@@ -4,7 +4,7 @@ export const ButtonStyles = styled.button`
   padding: 10px 15px;
   display: grid;
   place-content: center;
-  border-radius: 0.8em;
+  border-radius: 0.5em;
   cursor: pointer;
   z-index: 10;
   ${(props) => {
@@ -91,28 +91,11 @@ export const Heading3 = styled.h3`
   ${(props) => Heading(props)}
   font-size: clamp(2vw, 2.4rem, 3.8vw);
 `;
-
-export const Layout = styled.div`
-  max-width: 100vw;
-  overflow-x: hidden;
-  display: grid;
-grid-auto-flow: column;
-  grid-template-columns: 100vw;
-  grid-template-areas:
-    "header"
-    "hero"
-    "about"
-    "portfolio"
-    "chooseus"
-    "services"
-    "marketing"
-    "testimonials"
-    "contactus"
-    "footer";
-  & > *:not(:first-child) {
-    margin-bottom: clamp(8rem, 15%, 12vh);
-  }
+export const Heading4 = styled.h4`
+  ${(props) => Heading(props)}
+  font-size: clamp(2rem, 2.2rem, 2.8rem);
 `;
+
 
 export const TextContainer = styled.div`
   position:relative;
@@ -253,8 +236,11 @@ export const Number = styled.div`
 `;
 
 export const IconStyles = styled.span`
-  font-size: 50px;
+  font-size: 40px;
+  line-height: 100%;
+  height: 100%;
+  vertical-align: middle;
   cursor: pointer;
   color:${props => props.color};
-  ${props => props.size === "sm" && `font-size : 30px;`}
+  ${props => props.size === "sm" && `font-size : 25px;`}
 `

@@ -1,26 +1,49 @@
 import React from "react";
-import { ContactList, Cols } from "../styles/form.style";
+import { ContactList, ContactBox } from "../styles/form.style";
 import { Form, Logo, Icon } from ".";
-import { Main, Container, Flex, Heading3, Text, Box } from "../styles/main.style";
-import { contactDetails, socialMediaIcons } from "../constants/contactDetailsData"
-import IoIcons, { IoMdLocate } from "react-icons/io"
- 
+import {
+  Main,
+  Container,
+  TextContainer,
+  Flex,
+  Heading4,
+  Heading2,
+  Text,
+} from "../styles/main.style";
+import {
+  contactDetails,
+  socialMediaIcons,
+} from "../constants/contactDetailsData";
+
 const ContactUs = () => {
   return (
-    <Main name="contactus" background="black">
+    <Main style={{ marginBottom: 0 }} name="contactus" background="black">
+      <Heading2 style={{ padding: "30px 0px 0px 10px" }} color="white"> Contact Us </Heading2>
       <Container>
         <Flex>
           <ContactList>
-            <Logo />
-            {contactDetails.map(detail => (
-              <Box layout={1} key={detail.id} color={detail.color}>
-                <Icon component={detail.icon} color={detail.color} />
-                <Heading3>{detail.title}</Heading3>
-                <Text>{detail.text}</Text>
-              </Box>
-            ))}
+            <Flex space={30} direction="column" alignItems="center" justifyContent="flex-start">
+              {contactDetails.map((detail) => (
+                <ContactBox key={detail.id} color={detail.color}>
+                  <Icon component={detail.icon} color={detail.color} />
+                  <TextContainer>
+                    <Heading4 color="white">{detail.title}</Heading4>
+
+                    <span style={{ fontSize: 15, color:"white", opacity: .8 }} >{detail.text}</span>
+                  </TextContainer>
+                </ContactBox>
+              ))}
+            </Flex>
+
             <Flex space={20}>
-              {socialMediaIcons.map(mediaIcon => <Icon key={mediaIcon.id} size="sm" component={mediaIcon.icon} color={mediaIcon.color} />)}
+              {socialMediaIcons.map((mediaIcon) => (
+                <Icon
+                  key={mediaIcon.id}
+                  size="sm"
+                  component={mediaIcon.icon}
+                  color={mediaIcon.color}
+                />
+              ))}
             </Flex>
           </ContactList>
           <Form />
