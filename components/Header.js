@@ -66,7 +66,7 @@ function Header() {
             <MobileNav isMobile={!isLarge} />
           </div>
         )}
-        <Logo />
+        <Logo href="/" />
         {isLarge && (
           <div className={classes.navList}>
             {navData.map(({ id, body, href }) => (

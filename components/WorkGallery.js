@@ -30,13 +30,8 @@ const WorkGallery = () => {
   };
 
   async function getImages(folder) {
-    const cachedImages = localStorage.getItem(folder)
-    
-    if(!!cachedImages) {
-      setImages(cachedImages);
-      return;
-    }
-    
+
+
     const { data, error } = await supabase.storage
       .from("portfolio")
       .list(folder, {
@@ -53,7 +48,6 @@ const WorkGallery = () => {
       URLs.push(imageData.publicURL);
     }
     console.log(URLs);
-    localStorage.setItem(folder, URLs)
     setImages([...URLs]);
   }
 
@@ -68,24 +62,31 @@ const WorkGallery = () => {
             ))}
           </TabList>
           {workgalleryData.tabNames.map((tab, index) => (
-            <TabPanel key={index} value={tab.toLowerCase()}>
+            <TabPanel
+              sx={{
+                width: "100%",
+              }}
+              key={index}
+              value={tab.toLowerCase()}
+            >
               <Flex direction="row" wrap="wrap" space={20}>
-                {!!images &&
-                  images.map((img, idx) => (
-                    <MainBox
-                      key={idx}
-                      layout={3}
-                      style={{ height: "500px", overflow: "hidden" }}
-                    >
-                      <Image
-                        loading="lazy"
-                        loader={() => img}
-                        objectFit="cover"
-                        src={img}
-                        layout="fill"
-                      />
-                    </MainBox>
-                  ))}
+                {!!images
+                  ? images?.map((img, idx) => (
+                      <MainBox
+                        key={idx}
+                        layout={3}
+                        style={{ height: "500px", overflow: "hidden" }}
+                      >
+                        <Image
+                          loading="lazy"
+                          loader={() => img}
+                          objectFit="cover"
+                          src={img}
+                          layout="fill"
+                        />
+                      </MainBox>
+                    ))
+                  : null}
               </Flex>
             </TabPanel>
           ))}
