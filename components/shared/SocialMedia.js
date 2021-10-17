@@ -3,9 +3,9 @@ import { Icon } from "..";
 import { socialMediaIcons } from "../../constants/contactDetailsData";
 import { Flex } from "../../styles/main.style";
 
-const SocialMedia = (color, ...props) => {
+const SocialMedia = ({ color, flex = {} }) => {
   return (
-    <Flex space={20} {...props}>
+    <Flex space={20} {...flex}>
       {socialMediaIcons.map((mediaIcon) => (
         <Icon
           key={mediaIcon.id}
