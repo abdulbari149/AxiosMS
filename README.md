@@ -1,3 +1,23 @@
+## Guide To Run Project on Localhost:3000
+## Step 01:
+  Download Visual Studio Code: https://code.visualstudio.com/download
+  Download Node JS: https://nodejs.org/en/download/
+  
+## Step 02:
+  Zip the files from the repository.
+  
+## Step 03: 
+  unzip the folder and open in visual studio code.
+  Open the terminal from the above tab or use shortcut 
+  ```ctrl + shift + ` ```
+## Step 04:
+  Run ``` npm install  ``` on the terminal. Always check that your terminal showing the right path which is the directory where your all files and folders are situated.
+  
+## Step 05: 
+  Run ```npm run dev``` and open the browser, navigate to ```localhost:3000``` on browser.
+
+Enjoy your website and have a good day!
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
