@@ -5,9 +5,9 @@
   
 ## Step 02:
   Zip the files from the repository.
-  
+  unzip the folder and then put all the contents of the repository in the folder name axiosms(very important)
 ## Step 03: 
-  unzip the folder and open in visual studio code.
+  open the folder in visual studio code.
   Open the terminal from the above tab or use shortcut 
   ```ctrl + shift + ` ```
 ## Step 04:
