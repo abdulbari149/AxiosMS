@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/dist/client/router";
 import { portfolioData } from "../constants/portfolioData";
-import { Main, ImageContainer } from "../styles/main.style";
+import { Main, Heading3, BoxBackground, TextContainer, Text } from "../styles/main.style";
 import { PortfolioBox } from "../styles/portfolio.style";
 import Button from "./shared/Button";
 import Section from "./shared/Section";
@@ -27,32 +27,33 @@ const Portfolio = () => {
             height={400}
             layout={2}
             key={item.id}
-          >
-            <ImageContainer height={item.image.c_height}>
-              <img src={item.image.src} height="100%" width="100%" />
-            </ImageContainer>
+            background="gradient"
+          > 
+            <BoxBackground image={item.image.src}></BoxBackground>
+            <TextContainer>
+            <Heading3>{item?.title}</Heading3>
+            <Text></Text>
+            </TextContainer>
+            
             <Button
-              width={item.button.size.width}
-              height={item.button.size.height}
+              w={item.button.size.width}
+              h={item.button.size.height}
               color={item.button.color}
               variant={item.button.variant}
+              style={{ 
+                marginTop: "auto"
+              }}
             >
               View Full Project
             </Button>
           </PortfolioBox>
         )}
       </Section>
-      <Button
-        style={{ marginTop: "50px" }}
-        width={30}
-        height={10}
-        variant="outlined"
-        color="black"
-      >
-        view More
-      </Button>
     </Main>
   );
 };
+
+
+
 
 export default Portfolio;

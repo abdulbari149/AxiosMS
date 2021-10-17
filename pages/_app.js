@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { AuthProvider } from "../store/context/auth";
+import { GlobalProvider } from "../store/context/global";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -19,8 +20,16 @@ const GlobalStyle = createGlobalStyle`
     width: 100vw;
     overflow-x: hidden;
   }
-`;
 
+  h1,h2,h3,h4,h5,h6{
+    text-transform: capitalize;
+  line-height: 1.5;
+  color: "black";
+  font-weight: bold;
+  white-space: pre-wrap;
+  }
+
+`;
 const theme = {
   colors: {
     black: "#111315",
@@ -28,7 +37,7 @@ const theme = {
     blue: "#2D46AA",
     v_blue: "#00A3D9",
     white: "#f8f8f8",
-    defaultTextColor: "#000000",
+    defaultTextColor: "#111315",
   },
   breakPoints: {
     x_large: {
@@ -56,7 +65,8 @@ const theme = {
       #141313 30.04%,
       rgba(20, 19, 19, 0.1) 111%
     )`,
-    default: "white"
+    black: "#111315",
+    default: "white",
   },
 };
 
@@ -64,11 +74,13 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <AuthProvider>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </AuthProvider>
+      <GlobalProvider>
+        <AuthProvider>
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </AuthProvider>
+      </GlobalProvider>
     </>
   );
 }

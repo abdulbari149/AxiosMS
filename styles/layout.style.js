@@ -1,8 +1,9 @@
 import styled from "styled-components"
 
-const Layout = styled.div`
+export const Layout = styled.div`
   max-width: 100vw;
   overflow-x: hidden;
+  min-height: 100vh;
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 100vw;
@@ -22,7 +23,9 @@ export const HomeLayout = styled(Layout)`
     "marketing"
     "testimonials"
     "contactus"
-    "footer";
+    "footer"
+    "loading"
+    ;
 `
 
 export const PortfolioLayout = styled(Layout)`
@@ -31,5 +34,12 @@ export const PortfolioLayout = styled(Layout)`
         "work"
         "footer"
     ;
+`
 
+export const ResponseLayout = styled(Layout)`
+    grid-template-areas:
+        "header"
+        "response"
+        "footer"
+    ;
 `

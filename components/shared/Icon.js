@@ -1,8 +1,12 @@
 import React from "react";
 import { IconStyles } from "../../styles/main.style";
-
-const Icon = ({ component, color, size }) => {
-  return <IconStyles color={color || "black"} size={size}>{component}</IconStyles>;
+import { IconButton } from "@mui/material";
+const Icon = ({ component, color, size, ...props }) => {
+  return (
+    <IconStyles as={IconButton} iconcolor={color} size={size} {...props}>
+      {component}
+    </IconStyles>
+  );
 };
 
 export default Icon;

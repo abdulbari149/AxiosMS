@@ -1,11 +1,20 @@
-import React from 'react'
-
+import React from "react";
+import { LoaderMain, Wrapper } from "../styles/main.style";
+import { CircularProgress } from "@mui/material";
 function Loading() {
-    return (
-        <div style={{ height: "100vh", width: "100vw", display:"grid", placeItems:"center"}}>
-            <h1>Loading...</h1>
-        </div>
-    )
+  return (
+    <LoaderMain name="loading">
+      <Wrapper top="0px" left="0px">
+        <CircularProgress
+          sx={{
+            width: "200px",
+            height: "200px",
+          }}
+          variant="indeterminate"
+        />
+      </Wrapper>
+    </LoaderMain>
+  );
 }
 
-export default Loading
+export default Loading;

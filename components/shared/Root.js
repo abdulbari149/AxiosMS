@@ -1,14 +1,25 @@
 import React from "react";
 import { useRouter } from "next/dist/client/router";
-import { HomeLayout, PortfolioLayout } from "../../styles/layout.style"
+import { ResponseLayout, HomeLayout, PortfolioLayout } from "../../styles/layout.style";
+import { Header, Footer } from "../.";
 const Root = ({ children }) => {
-  const router = useRouter()
+  const router = useRouter();
+  const html = (
+    <>
+      {" "}
+      <Header />
+      {children}
+      <Footer />{" "}
+    </>
+  );
+  if (router.route == "/portfolio")
+    return <PortfolioLayout>{html}</PortfolioLayout>;
 
-  let html = null;
+  if (router.route == "/") return <HomeLayout>{html}</HomeLayout>;
+  if (router.route.includes("/success"))
+    return <ResponseLayout>{html}</ResponseLayout>;
 
-  if(router.route == "/portfolio") return <PortfolioLayout>{children}</PortfolioLayout>
-  
-  return <HomeLayout>{children}</HomeLayout>;
+  return html;
 };
 
 export default Root;

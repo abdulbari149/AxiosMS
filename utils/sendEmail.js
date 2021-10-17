@@ -1,18 +1,9 @@
-import { createTransport } from "nodemailer";
-
+import sgMail from "@sendgrid/mail"
 export function sendEmails(data) {
-  const transporter = createTransport({
-    host: "in-v3.mailjet.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.MAILJET_API_KEY,
-      pass: process.env.MAILJET_SECRET_KEY,
-    },
-  });
+  sgMail.setApiKey("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")
   const text = `Name: ${data.name} 
     Email: ${data.email}
-    Phone Number: ${data.phoneNo}
+    Phone Number: ${data.phone_number}
     Message : ${data.message}
 `;
   const html = text
@@ -21,13 +12,13 @@ export function sendEmails(data) {
     .toString()
     .replace(/,/g, "");
 
-  const mailOptions = {
-    from: "'Axios' <axiosms@hotmail.com>",
-    to: "'abdulbari' <abdulbari131103@gmail.com>",
-    subject: "Marketing email",
+  const msg = {
+    to: "abdulbari131103@gmail.com",
+    from: "abdulbari.khatri@outlook.com",
+    subject: "Customer email",
     text: text,
     html: html,
   };
 
-  return { transporter, mailOptions };
+  return msg
 }

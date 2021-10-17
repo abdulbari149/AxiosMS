@@ -1,42 +1,35 @@
 import React from "react";
-import {
-  Number,
-  Box,
-  Main,
-  Wrapper,
-  Heading3,
-  Text,
-} from "../styles/main.style";
+import { Number, Box, Main, Heading3, Text } from "../styles/main.style";
 import { Section, Image } from ".";
 import { chooseUsData } from "../constants/chooseUsData";
 
-const ChooseUs = () => {
+const ChooseUsContainer = () => {
   return (
-    <Main name="chooseus">
+    <Main id="choose-us" name="chooseus" background="gradient">
       <Image
-        background="gradient"
-        c_height="800px"
+        objectFit="cover"
         layout="fill"
         src="/images/why-choose-us-img.png"
       />
-      <Wrapper top="0%" left="0%">
-        <Section
-          data={chooseUsData}
-          title="Why Choose Us"
-          textColor="white"
-          flex={{ wrap: "wrap", space: 50 }}
-        >
-          {(item) => (
-            <Box space={15} layout={3} key={item.id}>
-              <Number> 0{item.id}</Number>
-              <Heading3 color="white">{item.title}</Heading3>
-              <Text color="white">{item.body}</Text>
-            </Box>
-          )}
-        </Section>
-      </Wrapper>
+      <Section
+        data={chooseUsData}
+        title="Why Choose Us"
+        textColor="white"
+        flex={{ wrap: "wrap", space: 50, alignItems: "flex-start" }}
+        render={data => <ChooseUs data={data} key={data.id} />}
+      />
     </Main>
   );
 };
 
-export default ChooseUs;
+const ChooseUs = ({ data }) => {
+  return (
+    <Box space={15} layout={3}>
+      <Number> 0{data.id}</Number>
+      <Heading3 color="white">{data.title}</Heading3>
+      <Text color="white">{data.body}</Text>
+    </Box>
+  );
+};
+
+export default ChooseUsContainer;

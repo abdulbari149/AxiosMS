@@ -14,7 +14,8 @@ export const portfolioData = [
       variant: "contained",
       color: "v_blue",
     },
-    url: "/work-1"
+    url: "/work-1",
+    title: "Web Designing"
   },
   {
     id: 2,
@@ -55,7 +56,7 @@ export const portfolioData = [
     id: 4,
     image: {
       layout: "fill",
-      src: "/images/services/photography-img.png",
+      src: "/images/services/uiux-designing-img.png",
       c_height: 400,
     },
     button: {

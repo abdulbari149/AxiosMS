@@ -1,11 +1,11 @@
-import React from 'react'
-
+import React from "react";
+import { Response, Root } from "../components";
 const success = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return (
+    <Root>
+      <Response />
+    </Root>
+  );
+};
 
-export default success
+export default success;

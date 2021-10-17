@@ -6,26 +6,28 @@ import {
   Header,
   Banner,
   About,
-  Portfolio,
   Services,
   ChooseUs,
   Testimonials,
-  Footer
+  Footer,
+  Loading,
 } from "../components";
+import { useGlobal } from "../store/context/global";
+
 export default function Home() {
-  return (
+  const { value, dispatch } = useGlobal();
+  return value?.loading ? (
+    <Loading />
+  ) : (
     <Root>
-      <Header />
       {bannerData.map((banner) => (
         <Banner key={banner.id} banner={banner} />
       ))}
       <About />
       <Services />
-      <Portfolio />
       <ChooseUs />
       <Testimonials />
       <ContactUs />
-      <Footer />
     </Root>
   );
 }

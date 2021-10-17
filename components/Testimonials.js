@@ -1,62 +1,104 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import {
   Main,
   Heading3,
   Text,
-  Number,
+  Quotes,
   TextContainer,
 } from "../styles/main.style";
 import { TestimonialsBox } from "../styles/testimonials.style";
 import { testimonialsData } from "../constants/testimonialsData";
 import { IoMdQuote } from "react-icons/io";
-import { Controller,Section } from "."
-const Testimonials = () => {
+import { Controller, Section } from ".";
+import { useComputeStyles, useMediaQuery } from "../hooks";
+const TestimonialsContainer = () => {
+  const [index, setIndex] = useState(0);
+  const [width, setWidth] = useState(null);
+  const boxRef = useRef(null);
+  const flexRef = useRef(null);
 
-  const [slide, useSlide] = useState("")
-  const [currentSlideIdx, setCurrentSlideIdx] = useState(2)
+  const { getStyles } = useComputeStyles(["width"]);
+  const isMobile = useMediaQuery("(max-width: 1023px)")
 
-  const slideValue = useMemo(() => 300 * currentSlideIdx, [currentSlideIdx])
-  console.log({ slideValue })
+  const translateBoxes = useCallback(
+    (value) => {
+      const translateValue = (parseInt(value) + 30) * index * -1;
+      console.log({ translateValue, value });
+      flexRef.current.style.transform = `translateX(${translateValue}px)`;
+      flexRef.current.style.transition = "400ms ease-in-out";
+    },
+    [index]
+  );
+
+
+  function handleStyles(){
+    const styles = getStyles(flexRef.current.children[0]);
+    setWidth(parseInt(styles.width));
+  }
+
+
+  useEffect(() => {
+    handleStyles()
+    window.addEventListener("resize", handleStyles)
+    return () => window.removeEventListener("resize", handleStyles)
+  }, []);
+
+  useEffect(() => {
+    translateBoxes(width);
+  }, [index]);
+
+
   return (
     <Main name="testimonials">
       <Section
-        color="black"
         title="Client's Testimonials"
         data={testimonialsData}
+        className="testimonials"
         flex={{
           space: 30,
-          style: {
-            overflow: "hidden"
-          }
+          ref: flexRef,
         }}
-      >
-        {(item) => (
-          <TestimonialsBox
-            layout={3}
-            active={item.id === currentSlideIdx}
-            space={40}
-            alignItems="center"
-            key={item.id}
-          >
-            <img {...item.image} />
-            <Heading3>John Doe</Heading3>
-            <TextContainer>
-              <Number
-                style={{ transform: "translate(-60%, -70%)", opacity: 1 }}
-              >
-                <IoMdQuote style={{ transform: "rotate(180deg)" }} />
-              </Number>
-              <Text>
-                I had a very good experience at axios. Love their communication
-                skills. I want to work again with them.
-              </Text>
-            </TextContainer>
-          </TestimonialsBox>
+        render={(data) => (
+          <Testimonial
+            data={data}
+            index={index}
+            key={data.id}
+            ref={boxRef}
+            isMobile={isMobile}
+            
+          />
         )}
-      </Section>
-      <Controller currentSlideIdx={currentSlideIdx}  setCurrentSlideIdx={setCurrentSlideIdx}/>
+      />
+
+      <Controller
+        index={index}
+        setIndex={setIndex}
+        maximum={testimonialsData.length - 1}
+        isMobile={isMobile}
+      />
     </Main>
   );
 };
 
-export default Testimonials;
+const Testimonial = React.forwardRef(({ data, index, isMobile }, ref) => {
+  return (
+    <TestimonialsBox
+      alignItems="center"
+      space={40}
+      layout={3}
+      ref={ref}
+      active={!isMobile && data.id === index + 1}
+    >
+      <img {...data.image} />
+      <Heading3>{data.name}</Heading3>
+      <TextContainer>
+        <Quotes>
+          <IoMdQuote />
+        </Quotes>
+        <Text style={{ textAlign: "center" }}>{data.feedback}</Text>
+      </TextContainer>
+    </TestimonialsBox>
+  );
+});
+
+export default TestimonialsContainer;

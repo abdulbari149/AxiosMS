@@ -35,10 +35,12 @@ export const socialMediaIcons = [
     id: 1,
     color: "white",
     icon: <IoLogoFacebook />,
+    href: "https://www.facebook.com"
   },
   {
     id: 2,
     color: "white",
     icon: <IoLogoInstagram />,
+    href: "https://www.instagram.com"
   },
 ];

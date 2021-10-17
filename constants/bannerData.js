@@ -21,21 +21,33 @@ export const bannerData = [
       {
         id: 1,
         content: "contact Us",
+        variant: "outlined",
         size: {
           width: 18,
           height: 8,
         },
-        variant: "outlined",
+        route: {
+          path: "#contactus",
+          options: {
+            shallow: true,
+          },
+        },
       },
       {
         id: 2,
-        content: "Hire Us",
+        content: "Learn More",
         size: {
           width: 18,
           height: 8,
         },
         color: "white",
         variant: "contained",
+        route: {
+          path: "#about",
+          options: {
+            shallow: true,
+          },
+        },
       },
     ],
   },
@@ -66,7 +78,13 @@ export const bannerData = [
           height: 8,
         },
         variant: "outlined",
-      }, 
+        route: {
+          path: "#contactus",
+          options: {
+            shallow: true,
+          },
+        },
+      },
     ],
   },
 ];

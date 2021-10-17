@@ -5,10 +5,9 @@ import Button from "./shared/Button";
 // import BannerImg from "/"
 const Banner = ({ banner }) => {
   return (
-    <Main name={banner.name}>
+    <Main name={banner.name} background="gradient">
       <Image
         c_height={banner.height}
-        background={banner.background}
         width={banner.width}
         height={banner.height}
         src={`/images/banner-${banner.name}-img.png`}
@@ -33,11 +32,12 @@ const Banner = ({ banner }) => {
         </Text>
 
         <Flex space={20} alignItems={banner.align} justifyContent={banner.align} >
-          {banner.buttons.map(({ id, size, content, ...buttonProps }) => (
+          {banner.buttons.map(({ id, size, content, route, ...buttonProps }) => (
             <Button
               key={id}
-              width={size.width}
-              height={size.height}
+              w={size.width}
+              h={size.height}
+              route={route}
               {...buttonProps}
             >
               {content}

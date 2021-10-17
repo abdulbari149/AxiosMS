@@ -1,46 +1,34 @@
 import { sendEmails } from "../../utils/sendEmail";
-import { getSession } from "../../utils/getSession";
-
-class EmailApiMethods {
-  POST(req, res) {
-    const formData = JSON.parse(req.body.data);
-    const { transporter, mailOptions } = sendEmails(formData);
-    return new Promise((resolve, reject) => {
-      transporter.sendMail(mailOptions, (err, success) => {
-        if (err) reject(err);
-        if (!!success) {
-          const response = {
-            sender_name: formData.name,
-            sender_email: formData.email,
-            sender_phone_number: formData.phoneNo,
-            sender_phone_code: 92,
-            message_id: success.messageId,
-            message_time: success.messageTime,
-            message_size: success.messageSize,
-            envelope_time: success.envelopeTime,
-          };
-          resolve(response);
-        }
-      });
-    })
-      .then((response) => {
-        console.log(response);
-        res.status(200).json(response);
-      })
-      .catch((err) => res.status(400).json({ message: err }));
-  }
-  GET(){
-
-  }
+import sgMail from "@sendgrid/mail";
+async function handlePOST(data) {
+  const formData = JSON.parse(data);
+  console.log(formData);
+  const msg = sendEmails(formData);
+  const res = await promisify(formData, msg);
+  const response = {
+    sender_name: formData.name,
+    sender_email: formData.email,
+    sender_phone_number: formData.phone_number.toString(),
+    sender_phone_code: 92,
+    message_id: res[0].headers["x-message-id"],
+  };
+  return response;
 }
 
-const { POST } = new EmailApiMethods();
+const promisify = (data, msg) => {
+  return new Promise((resolve, reject) => {
+    sgMail.send(msg, (error, info) => {
+      if (error) {
+        reject(error);
+      }
+      resolve(info);
+    });
+  });
+};
 
-export default function emailApi(req, res) {
+export default async function handler(req, res) {
   if (req.method === "POST") {
-    POST(req, res)
-  }
-  if(req.method === "GET"){
-    res.status(401).json({ error: "The route is not in use" })
+    const data = await handlePOST(req.body.data);
+    res.status(200).json(data);
   }
 }

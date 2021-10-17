@@ -16,6 +16,8 @@ export const ContactBox = styled.div`
 
 export const ContactList = styled.div`
     width: 50%;
+    ${props => props.mobile && `width: 100%;`}
+    flex: 1;
     height: 45rem;
     display:flex;
     flex-direction: column;
@@ -25,27 +27,29 @@ export const ContactList = styled.div`
     }
 
 `
-export const FormStyles = styled.div`
+export const Form = styled.form`
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 50%;
     color:white;
+    ${props => props.mobile && `width: 100%;`}
 `
 
-export const InputField = styled(TextField)`
-    background-color: white;
-    border-radius: .5em;
-    border-top: 4px solid ${props => props.theme.colors.v_blue} !important;
-    border-left: 2px solid ${props => props.theme.colors.v_blue} !important;
-    border-right: 2px solid ${props => props.theme.colors.v_blue} !important;
-    box-sizing: content-box;
-    & label.MuiInputLabel-root{
-        font-size: 1.4em;
-        text-transform: capitalize;
-        top: 5px;
-    }
-    & .MuiFilledInput-root{
-        font-size: 1.8rem !important;
-    }
-`
+// export const InputField = styled(TextField)`
+//     background-color: white;
+//     border-radius: .5em;
+//     border-top: 4px solid ${props => props.theme.colors.v_blue} !important;
+//     border-left: 2px solid ${props => props.theme.colors.v_blue} !important;
+//     border-right: 2px solid ${props => props.theme.colors.v_blue} !important;
+//     box-sizing: content-box;
+//     & label.MuiInputLabel-root{
+//         font-size: 1.4em;
+//         text-transform: capitalize;
+//         top: 5px;
+//     }
+//     & .MuiFilledInput-root{
+//         font-size: 1.6rem !important;
+//     }
+// `

@@ -10,5 +10,5 @@ export function useForm(data) {
       [event.target.name]: event.target.value,
     }));
   };
-  return [formData, handleChange]
+  return [formData, setFormData, handleChange]
 }

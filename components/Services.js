@@ -7,15 +7,15 @@ import {
   List,
   Item,
   Main,
-  BoxBackground
+  BoxBackground,
 } from "../styles/main.style";
 import { AiOutlineCheck } from "react-icons/ai";
 import Section from "./shared/Section";
 
+const ServicesContainer = () => {
 
-const Services = () => {
   return (
-    <Main name="services">
+    <Main id="services" name="services">
       <Section
         title="What we offer"
         data={services}
@@ -24,28 +24,27 @@ const Services = () => {
           space: 30,
           wrap: "wrap",
         }}
-      >
-        {(item) => (
-          <Box
-            layout={3}
-            background="gradient"
-            key={item.id}
-          >
-            <BoxBackground image={`/images/services/${item.image}`} />
-            <Heading3 color="white">{item.title}</Heading3>
-            <List>
-              {item.list.map((listItem, idx) => (
-                <Item key={idx}>
-                  <AiOutlineCheck />
-                  <Text color="white">{listItem}</Text>
-                </Item>
-              ))}
-            </List>
-          </Box>
-        )}
-      </Section>
+        render={data => <Service data={data} key={data.id} />}
+      />
     </Main>
   );
 };
 
-export default Services;
+export const Service = ({ data }) => {
+  return (
+    <Box layout={3} background="gradient">
+      <BoxBackground image={`/images/services/${data.image}`} />
+      <Heading3 color="white">{data.title}</Heading3>
+      <List>
+        {data.list.map((item, idx) => (
+          <Item key={idx}>
+            <AiOutlineCheck />
+            <Text color="white">{item}</Text>
+          </Item>
+        ))}
+      </List>
+    </Box>
+  );
+};
+
+export default ServicesContainer;

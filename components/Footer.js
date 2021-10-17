@@ -3,7 +3,7 @@ import { Main, Text, Flex } from "../styles/main.style";
 const Footer = () => {
   return (
     <Main
-      style={{ height: "7rem", marginBottom: "0px" }}
+      style={{ height: "7rem", marginBottom: "0px", marginTop: "auto" }}
       background="black"
       name="footer"
     >

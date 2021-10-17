@@ -4,7 +4,7 @@ import { Main,Container, Heading2, TextContainer, Text } from "../styles/main.st
 import Image from "./shared/Image";
 const About = () => {
   return (
-    <Main name="about">
+    <Main id="#about" name="about">
       <Container alignItems="center" direction="column" gap="10px">
         <TextContainer direction="column" gap={25}>
           <Heading2>About Us</Heading2>

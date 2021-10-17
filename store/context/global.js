@@ -1,8 +1,46 @@
 import { createContext, useContext, useReducer } from "react";
-const GlobalContext = createContext(null);
-export const GlobaltProvider = ({ children }) => {
-    const [slider, dispatch] = useReducer(sliderReducer)
-  return <GlobalContext.Provider>{children}</GlobalContext.Provider>;
+
+const initialState = {
+  loading: false,
+  data: null,
+  error: null,
 };
 
-export const useAuth = () => useContext(GlobalContext);
+const GlobalContext = createContext(null);
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "FETCHING":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "SUCCESS_FETCHING":
+      return {
+        ...state,
+        loading: false,
+        data: action.payload.data,
+        error: null,
+      };
+    case "ERROR_FETCHING":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+        data: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const GlobalProvider = ({ children }) => {
+  const [value, dispatch] = useReducer(reducer, initialState);
+  return (
+    <GlobalContext.Provider value={{ value, dispatch }}>
+      {children}
+    </GlobalContext.Provider>
+  );
+};
+
+export const useGlobal = () => useContext(GlobalContext);
