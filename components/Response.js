@@ -22,7 +22,7 @@ const Response = () => {
         </Text>
         <Flex direction="column" alignItems="center">
           <Heading4>You can visit us on:</Heading4>
-          <SocialMedia color="black" alignItems="center" />
+          <SocialMedia color="black" justifyContent="center" />
         </Flex>
       </Container>
     </Main>
