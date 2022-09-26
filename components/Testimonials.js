@@ -80,6 +80,7 @@ const TestimonialsContainer = () => {
   );
 };
 
+// eslint-disable-next-line react/display-name
 const Testimonial = React.forwardRef(({ data, index, isMobile }, ref) => {
   return (
     <TestimonialsBox

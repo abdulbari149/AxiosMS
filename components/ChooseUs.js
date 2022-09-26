@@ -10,6 +10,7 @@ const ChooseUsContainer = () => {
         objectFit="cover"
         layout="fill"
         src="/images/why-choose-us-img.png"
+        alt='choose-up-image'
       />
       <Section
         data={chooseUsData}
